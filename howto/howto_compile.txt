@@ -1,3 +1,7 @@
+Fedora
+$ curl -s https://packagecloud.io/install/repositories/cs50/repo/script.rpm.sh | sudo bash
+$ dnf install libcs50
+
 // to compile:
 // $ make int
 
@@ -19,6 +23,9 @@
 // $ ./a.out
 // or:
 // ./int
+
+// VAR 3:
+// clang -fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow    int.c  -lcrypt -lcs50 -lm -o int
 
 // C/C++ Compile Run VS Code
 
