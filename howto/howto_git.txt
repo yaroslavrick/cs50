@@ -1,0 +1,24 @@
+git init cs50
+cd cs50
+git branch -M main
+git add .
+git commit -am "first commit"
+Создаю репозиторий на гитхабе
+git remote add origin git@github.com:yaroslavrick/cs50.git 
+git branch -M main
+git push -u origin main
+
+
+
+
+OTHER:
+# git checkout -b development  #Переключено на новую ветку «development»
+
+# -n  - n - количество последних коммитов, которые хочу увидеть
+git log -1
+
+# checkout - дает возможность вернуться в то состояние программы 
+git checkout <identificator>
+
+# чтобы вернуться назад в будущее:
+git checkout master
