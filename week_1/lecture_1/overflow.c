@@ -1,6 +1,7 @@
 // Integer overflow
 
 #include <stdio.h>
+// unistd.h - подключаю функцию sleep
 #include <unistd.h>
 
 int main(void)
