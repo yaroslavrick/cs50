@@ -6,5 +6,4 @@ int main(void)
   {
     printf("cough\n");
   }
-
 }

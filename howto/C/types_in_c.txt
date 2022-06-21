@@ -10,6 +10,10 @@ int, integers up to a certain size, or number of bits
 long, integers with more bits, so they can count higher
 string, a string of characters
 
+unsigned int - integer without sign. It doubles number of range in int to 4 blns
+short int - int data type occupies 2 bytes  (16 bits) of memory to store an integer value
+consts
+
 And the CS50 library has corresponding functions to get input of various types:
 get_char
 get_double

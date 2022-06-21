@@ -1,0 +1,6 @@
+void 
+- "пустота"
+- is a type but not a data type;
+- it means that it doesn's returns value ("printf" for example doesn't returns value);
+- the parameters list can also be void. It simply means the function takes no parameters;
+- for now think of void more as a placeholder for "nothing".  

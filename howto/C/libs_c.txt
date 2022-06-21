@@ -1,0 +1,8 @@
+// unistd.h - подключаю функцию sleep
+#include <unistd.h>
+sleep(1);
+
+
+// #include <cs50.h>
+- bool
+- string

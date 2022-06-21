@@ -1,5 +1,5 @@
-# include <cs50.h>
-# include <stdio.h>
+#include <cs50.h>
+#include <stdio.h>
 
 int get_positive_int(string_prompt);
 
@@ -16,10 +16,9 @@ int get_positive_int(string_prompt)
   int n;
   // Робити наступне поки менше за 1
   // do {something} while (сondition)
-  do 
+  do
   {
     n = get_int(prompt);
-  }
-  while (n < 1);
+  } while (n < 1);
   return n;
 }
