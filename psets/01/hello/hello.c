@@ -5,6 +5,6 @@ int main(void)
 {
     // Prompting name from user:
     string name = get_string("What is your name?\n");
-    // printing input:
+    // Printing input:
     printf("hello, %s\n", name);
 }

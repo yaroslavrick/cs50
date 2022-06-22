@@ -1,0 +1,14 @@
+// How to Test Your Code
+https://cs50.harvard.edu/x/2022/psets/1/hello/
+
+$ check50 cs50/problems/2022/x/hello
+
+// To check style:
+https://cs50.readthedocs.io/style/c/
+
+$ style50 hello.c
+
+// How to Submit
+
+$ submit50 cs50/problems/2022/x/hello
+
