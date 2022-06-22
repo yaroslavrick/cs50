@@ -1,0 +1,10 @@
+Prompt for input "Height:"
+- use get_int("Height:")
+- if input less then 1 or more then 8 => prompt again
+
+use loop:
+for ex:
+while (input < 1 || input > 8)
+{
+        prompt user for input
+}
