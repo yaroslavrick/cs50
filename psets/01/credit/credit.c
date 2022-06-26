@@ -1,20 +1,35 @@
-// Luhn’s Algorithm
-
 #include <cs50.h>
 #include <stdio.h>
+// Lib for exit()
+#include <stdlib.h>
+
+// TODO
+// - prompt to input
+// - calculate checksum (last digit is zero?)
+// - check the card lenght (> 13; < 17) and starting digits (Am Express, Visa, MasterCard)
+// - Print AMEX; MASTERCARD; VISA; or INVALID
 
 long get_card(void);
 int number_of_digits(long card);
-string type_of_card(int digits, long card);
-int checksum(long card);
+int checksum(long card, int digits);
+int first_digit_func(long card, int digits);
+int second_digit_func(long card, int digits);
+int print_result(long card, int digits, int first_digit, int second_digit);
 
 int main(void)
 {
-    long card = get_card;
+    // - prompt to input
+    long card = get_card();
+
+    // Checking how many digits in card:
     int digits = number_of_digits(card);
-    printf("Digits: %d\n", digits);
-    string type_of_card(int digits, long card);
-    int checksum(card);
+    // printf("Digits: %i\n", digits);
+
+    int sum = checksum(card, digits);
+    // printf("Sum of digits is: %i\n", sum);
+    int first_digit = first_digit_func(card, digits);
+    int second_digit = second_digit_func(card, digits);
+    print_result(card, digits, first_digit, second_digit);
 }
 
 // Methods:
@@ -22,57 +37,143 @@ int main(void)
 // Getting card:
 long get_card(void)
 {
-    long card;
-    int digits;
-    do
-    {
-        card = get_long("Number: ");
-        digits = number_of_digits(card);
-    } while (digits <= 0 && digits < 13 && digits > 16);
-    return card;
+    long card_number = get_long("Number: ");
+    return card_number;
 }
 
 // Counting number of digits in card
 int number_of_digits(long card)
 {
     int digits_count;
-    for (int digits_count = 0; card > 0; card / 10)
+    // long card_to_calc = card;
+    for (digits_count = 0; card > 0; card = card / 10)
+    // for (initializationStatement; testExpression; updateStatement)
     {
         digits_count = digits_count + 1;
     }
     return digits_count;
 }
 
-string type_of_card(int digits, long card)
+// Checksum (Luhn’s Algorithm):
+int checksum(long card, int digits)
 {
-    // reports(via printf) whether it is a valid American Express, MasterCard, or Visa card number, per the definitions of each’s format herein
-    // AMEX\n or MASTERCARD\n or VISA\n or INVALID\n;
+    int reminder, doubled, sum_of_summs;
+    int sum_of_doubled = 0;
+    int sum_of_not_doubled = 0;
+    int sum = 0;
 
-    switch (card)
+    do
     {
-    case 34 || 37 && (15 digits):
-        printf("AMEX\n");
-        break;
-    case 51 || 52 || 53 || 54 || 55 && (16 digits):
-        printf("MASTERCARD\n");
-        break;
-    case 4 && (13 digits || 16 digits):
-        printf("VISA\n");
-        break;
-    default:
+
+        // Достаю последнюю цифру:
+        reminder = card % 10;
+
+        // Суммирую "не сдвоенные" цифры карты:
+        sum_of_not_doubled = sum_of_not_doubled + reminder;
+
+        // Убираю эту последнюю цифру с "card":
+        card = card - reminder;
+
+        // Убираю ноль:
+        card = card / 10;
+
+        // - одна цифра:
+        digits -= 1;
+
+        // Достаю предпоследнню цифру:
+        reminder = card % 10;
+
+        // Множу ее на два:
+        doubled = reminder * 2;
+
+        // Если цифр две:
+        if (doubled > 9)
+        {
+            int reminder_of_doubled = doubled % 10;
+            doubled = doubled - reminder_of_doubled;
+            doubled = doubled / 10;
+            doubled = doubled + reminder_of_doubled;
+        }
+
+        // Суммирую:
+        sum_of_doubled = sum_of_doubled + doubled;
+
+        // Убираю остаток с карты и потом убираю ноль, чтобы добраться к следующей цифре:
+        card = card - reminder;
+
+        card = card / 10;
+
+        digits -= 1;
+
+        sum = sum_of_doubled + sum_of_not_doubled;
+
+    } while (digits > 0);
+
+    // printf("Sum: %i\n", sum);
+
+    if ((sum % 10) == 0)
+    {
+        return sum;
+    }
+    else
+    {
         printf("INVALID\n");
+        exit(0);
     }
 }
 
-int checksum(long card)
+int first_digit_func(long card, int digits)
 {
-    //     Multiply every other digit by 2, starting with the number’s second - to - last digit, and then add those products’ digits together.
-    // (second_to_last_digit * 2) - с предпоследнего до первого
+    int reminder;
+    for (int i = digits; i > 1; i = i - 1)
+    {
+        reminder = card % 10;
+        card = (card - reminder) / 10;
+    }
+    return card;
+}
 
-    // Add the sum to the sum of the digits that weren’t multiplied by 2.
-    // int sum_of_doubled_digits = digits1+d2+d3..
+// Достаю вторую цифру карты:
+int second_digit_func(long card, int digits)
+{
+    int reminder;
+    for (int i = digits; i > 2; i = i - 1)
+    {
+        reminder = card % 10;
+        card = (card - reminder) / 10;
+    }
 
-    // int summ_of_other_digits_not_doubled + sum_of_doubled_digits
-    // if total's last digit is 0 - card is valid!
-    // If the total’s last digit is 0(or, put more formally, if the total modulo 10 is congruent to 0), the number is valid !
+    int second_num = card % 10;
+    return second_num;
+}
+
+int print_result(long card, int digits, int first_digit, int second_digit)
+{
+    // AMEX:
+
+    if ((digits == 15) && (((first_digit == 3) && (second_digit == 4)) || ((first_digit == 3) && (second_digit == 7))))
+    {
+        return printf("AMEX\n");
+    }
+    // MASTERCARD:
+
+    else if ((digits == 16) && ((first_digit == 5 && second_digit == 1) || (first_digit == 5 && second_digit == 2) || (first_digit == 5 && second_digit == 3) || (first_digit == 5 && second_digit == 4) || (first_digit == 5 && second_digit == 5)))
+    {
+        return printf("MASTERCARD\n");
+    }
+
+    // VISA:
+
+    else if ((digits == 13 || digits == 16) && first_digit == 4)
+    {
+        return printf("VISA\n");
+    }
+
+    // INVALID:
+
+    else
+    {
+        printf("INVALID\n");
+        exit(0);
+    }
 }
