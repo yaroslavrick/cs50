@@ -9,3 +9,9 @@ sleep(1);
 
 // Lib for exit()
 #include <stdlib.h>
+
+
+#include <math.h>
+// lib for rounding floats:
+int pennies = round(amount * 100);
+// округляю
