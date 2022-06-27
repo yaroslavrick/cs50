@@ -20,7 +20,7 @@ pennies = calculate_pennies(cents)
 cents -= pennies
 
 # Sum coins
-coins = quarters + dimes + nickels + pennies
+coins = sum_of_coins(quarters, dimes, nickels, pennies)
 
 # Print total number of coins to give the customer
 puts "#{coins}\n"
