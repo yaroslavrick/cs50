@@ -6,3 +6,6 @@ sleep(1);
 // #include <cs50.h>
 - bool
 - string
+
+// Lib for exit()
+#include <stdlib.h>

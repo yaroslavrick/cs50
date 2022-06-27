@@ -14,7 +14,7 @@ int number_of_digits(long card);
 int checksum(long card, int digits);
 int first_digit_func(long card, int digits);
 int second_digit_func(long card, int digits);
-int print_result(long card, int digits, int first_digit, int second_digit);
+int print_result(int digits, int first_digit, int second_digit);
 
 int main(void)
 {
@@ -23,13 +23,18 @@ int main(void)
 
     // Checking how many digits in card:
     int digits = number_of_digits(card);
-    // printf("Digits: %i\n", digits);
 
+    // Checking checksum:
     int sum = checksum(card, digits);
-    // printf("Sum of digits is: %i\n", sum);
+
+    // Looking for firts digit:
     int first_digit = first_digit_func(card, digits);
+
+    // Lokiing for second digit:
     int second_digit = second_digit_func(card, digits);
-    print_result(card, digits, first_digit, second_digit);
+
+    // Printing results:
+    print_result(digits, first_digit, second_digit);
 }
 
 // Methods:
@@ -45,7 +50,6 @@ long get_card(void)
 int number_of_digits(long card)
 {
     int digits_count;
-    // long card_to_calc = card;
     for (digits_count = 0; card > 0; card = card / 10)
     // for (initializationStatement; testExpression; updateStatement)
     {
@@ -122,6 +126,7 @@ int checksum(long card, int digits)
     }
 }
 
+// Getting first digit:
 int first_digit_func(long card, int digits)
 {
     int reminder;
@@ -147,7 +152,8 @@ int second_digit_func(long card, int digits)
     return second_num;
 }
 
-int print_result(long card, int digits, int first_digit, int second_digit)
+// Printing results:
+int print_result(int digits, int first_digit, int second_digit)
 {
     // AMEX:
 
