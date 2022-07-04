@@ -4,7 +4,7 @@
 int main(void)
 {
     int n = get_int("How many scores? ");
-    // Обявляю переменную массива размером 3:
+    // Объявляю переменную массива размером n:
     int scores[n];
 
     int sum_of_scores = 0;
