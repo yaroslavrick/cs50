@@ -42,7 +42,6 @@ int main(void)
 
     // Printing a result
     result_printer(grade);
-
 }
 
 // Calculating number of letters in the text
@@ -95,10 +94,10 @@ int grade_calc(float letters_number, float words_number, float sentences_number)
 {
     // The formula is
 
-// index = 0.0588 * L - 0.296 * S - 15.8
+    // index = 0.0588 * L - 0.296 * S - 15.8
 
-// where L is the average number of letters per 100 words in the text,
-// and S is the average number of sentences per 100 words in the text.
+    // where L is the average number of letters per 100 words in the text,
+    // and S is the average number of sentences per 100 words in the text.
     // float index = (0.0588 * ((letters / words) * 100)) - (0.296 * ((sentences / words) * 100)) - 15.8;
 
     float letters_per_words = (letters_number / words_number) * 100;
@@ -107,8 +106,8 @@ int grade_calc(float letters_number, float words_number, float sentences_number)
 
     int grade = round(index);
     return grade;
-} 
-  
+}
+
 // Printing a result
 int result_printer(int grade)
 {
