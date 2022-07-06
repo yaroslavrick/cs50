@@ -22,10 +22,8 @@ int main(void)
     int score1 = compute_score(word1);
     int score2 = compute_score(word2);
 
-    // TODO: Print the winner
-    // "Player 1 wins!\n"
-    // "Player 1 wins!\n"
-    // "Tie!\n"
+    // Print the winner
+
     if (score1 > score2)
     {
         printf("Player 1 wins!\n");
@@ -50,7 +48,7 @@ int compute_score(string word)
 
     // Characters that are not letters should be given zero points, and uppercase and lowercase letters should be given the same point values.
 
-    // Has ASCII arrays value assigned to small letters for alphabets
+    // ASCII arrays value assigned to small letters for alphabets
     int small_letters[] = {97,
                            98,
                            99,

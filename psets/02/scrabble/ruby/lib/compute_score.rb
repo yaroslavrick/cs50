@@ -6,7 +6,7 @@ def compute_score(word)
                r s t u v w x y z]
 
   # Making hash of keys of letters and values of points:
-  points_hash = Hash[letters.zip @points_arr]
+  points_hash = letters.zip(@points_arr).to_h
 
   # Making array from user's word:
   word_arr = word.scan(/\w/)
@@ -14,11 +14,11 @@ def compute_score(word)
 
   # counter score:
   score = 0
-
+ puts "HEllo"
   # Iterating letters in word, looking for points
   points_hash.select do |letter, point|
     if word_arr.include?(letter)
-      score = score + point
+      score += point
     end
   end
   return score
