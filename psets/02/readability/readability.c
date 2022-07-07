@@ -30,12 +30,15 @@ int main(void)
 
     // Calculating number of letters in the text
     int letters_number = count_letters(text);
+    // printf("Letters: %i\n", letters_number);
 
     // Calculating number of words in the text
     int words_number = count_words(text);
+    // printf("Words: %i\n", words_number);
 
     // Calculating number of sentences in the text
     int sentences_number = count_sentences(text);
+    // printf("Sentences: %i\n", sentences_number);
 
     // Calculating grade
     int grade = grade_calc(letters_number, words_number, sentences_number);
@@ -72,6 +75,7 @@ int count_words(string text)
             words_counter += 1;
         }
     }
+    words_counter += 1;
     return words_counter;
 }
 
@@ -103,6 +107,7 @@ int grade_calc(float letters_number, float words_number, float sentences_number)
     float letters_per_words = (letters_number / words_number) * 100;
     float sentences_per_words = (sentences_number / words_number) * 100;
     float index = 0.0588 * letters_per_words - 0.296 * sentences_per_words - 15.8;
+    // printf("Index: %f\n", index);
 
     int grade = round(index);
     return grade;
