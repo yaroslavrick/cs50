@@ -20,7 +20,7 @@ int main(void)
     for (int i = 0; i < strlen(plaintext); i++)
     {
         // Taking char:
-        string cipher = cipher + (plaintext[i] + key) % 26;
+        string plaintext[i] =  + (plaintext[i] + key) % 26;
         printf("%c\n", cipher);
     }
 }

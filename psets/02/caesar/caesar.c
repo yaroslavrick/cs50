@@ -5,16 +5,19 @@
 #include <string.h>
 
 // Functions:
-int check_arguments(int argc);
+bool check_arguments(int argc);
 bool isDigit(string number);
-int check_for_negative_int(string number);
+bool isNegative_int(string number);
 string rotate_text(string plaintext, int key);
 
 int main(int argc, string argv[])
 {
     // Checking if there's more than one command-line argument
     // Checking if the command-line argument exists:
-    check_arguments(argc);
+    if (check_arguments(argc) == false)
+    {
+        return 1;
+    }
 
     // Check if argv[1] is a digit:
     if (isDigit(argv[1]) == false)
@@ -24,7 +27,10 @@ int main(int argc, string argv[])
     }
 
     // Check for non-negative integer in argv[1]:
-    check_for_negative_int(argv[1]);
+    if (isNegative_int(argv[1]))
+    {
+        return 1;
+    }
 
     // Convert argv[1] from a `string` to an `int`
     int key = atoi(argv[1]);
@@ -44,7 +50,7 @@ int main(int argc, string argv[])
 
 // Checking if there's more than one command-line argument
 // Checking if the command-line argument exists:
-int check_arguments(int argc)
+bool check_arguments(int argc)
 // argc - argument calculating (how many words human typed in the prompt)
 // argv[] - argument vector. It's going to be array of the word that human typed at the prompt
 {
@@ -52,18 +58,18 @@ int check_arguments(int argc)
     if (argc > 2)
     {
         printf("There's more than one command-line argument\n");
-        return 1;
+        return false;
     }
     // Checking if the command-line argument exists:
     else if (argc < 2)
     {
         printf("Usage: ./caesar key\n");
-        return 1;
+        return false;
     }
     // If okey:
     else
     {
-        return 0;
+        return true;
     }
 }
 
@@ -86,16 +92,16 @@ bool isDigit(string number)
 
 // Check for non-negative integer in argv[1]:
 // TODO
-int check_for_negative_int(string number)
+bool isNegative_int(string number)
 {
     if (number[0] == '-')
     {
         printf("Negative digit!\n");
-        return 1;
+        return false;
     }
     else
     {
-        return 0;
+        return true;
     }
 }
 
@@ -106,22 +112,38 @@ string rotate_text(string plaintext, int key)
     for (int i = 0; i < strlen(plaintext); i++)
     {
         // Rotate the character if it's a letter
+
+        // If alphabetical:
         if (isalpha(plaintext[i]))
         {
+            // If letter is in uppercase
             if (isupper(plaintext[i]))
             {
-                plaintext[i] = plaintext[i] + key;
-                // 65 - 90 A-Z
-                if (plaintext[i] > 90)
+                // // If more than #90 ASCII (65 - 90: A - Z)
+                if ((plaintext[i] + (key % 26)) > 90)
                 {
-                    plaintext[i] = (((plaintext[i] + key) % 26) + 65);
+                    plaintext[i] = plaintext[i] + (key % 26) - 26;
+                }
+                else
+                {
+                    plaintext[i] = plaintext[i] + (key % 26);
                 }
             }
-            // printf("i = %i\n", i);
-            // printf("plaintext int: %i\n", plaintext[i]);
-            // plaintext[i] = plaintext[i] + key;
-            // printf("plaintext int: %i\n", plaintext[i]);
+            // If letter is in lowercase
+            if (islower(plaintext[i]))
+            {
+                // // If more than #122 ASCII (97 - 122: a - z)
+                if ((plaintext[i] + (key % 26)) > 122)
+                {
+                    plaintext[i] = plaintext[i] + (key % 26) - 26;
+                }
+                else
+                {
+                    plaintext[i] = plaintext[i] + (key % 26);
+                }
+            }
         }
+        // If non-alphabetical:
         else
         {
             plaintext[i] = plaintext[i];
