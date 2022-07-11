@@ -38,15 +38,15 @@ int main(void)
     }
 }
 
+// Compute and return score for string
+// return the number of points for the word
+// ignore non-letter characters
+// handle both uppercase and lowercase letters
 int compute_score(string word)
 {
-    // TODO: Compute and return score for string
 
-    // return the number of points for the word
-    // ignore non-letter characters
-    // handle both uppercase and lowercase letters
-
-    // Characters that are not letters should be given zero points, and uppercase and lowercase letters should be given the same point values.
+    // Characters that are not letters should be given zero points, and uppercase and lowercase
+    // letters should be given the same point values.
 
     // ASCII arrays value assigned to small letters for alphabets
     int small_letters[] = {97,
@@ -83,7 +83,7 @@ int compute_score(string word)
     // strlen - string length
     for (int i = 0; i < strlen(word); i++)
     {
-        // if Letter is in Upper case:
+        // Checks if letter is in Uppercase:
         // isupper - check whether a character is uppercase
         if (isupper(word[i]))
         {

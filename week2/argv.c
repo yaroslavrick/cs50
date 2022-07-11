@@ -1,8 +1,8 @@
 #include <cs50.h>
 #include <stdio.h>
 
-// argc - argument calculating (how many wordshuman typed in the prompt)
-// argv[] - argument vector. It's going to be arrayof the word that human typed at the prompt
+// argc - argument calculating (how many words human typed in the prompt)
+// argv[] - argument vector. It's going to be array of the word that human typed at the prompt
 int main(int argc, string argv[])
 {
     // If arguments in command line is 2:
