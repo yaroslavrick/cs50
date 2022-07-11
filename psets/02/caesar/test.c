@@ -11,7 +11,7 @@ int main(void)
     // Convert result beck to ASCII
 
     // char c = 'Z';
-    // int key = 3;
+    int key = 3;
     // char cipher = ((c + key) % 26);
     // printf("%c\n", cipher);
 

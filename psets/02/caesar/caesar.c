@@ -6,8 +6,9 @@
 
 // Functions:
 int check_arguments(int argc);
-int isDigit(string number);
+bool isDigit(string number);
 int check_for_negative_int(string number);
+string rotate_text(string plaintext, int key);
 
 int main(int argc, string argv[])
 {
@@ -16,7 +17,11 @@ int main(int argc, string argv[])
     check_arguments(argc);
 
     // Check if argv[1] is a digit:
-    isDigit(argv[1]);
+    if (isDigit(argv[1]) == false)
+    {
+        printf("%s include non-digit value!\n", argv[1]);
+        return 1;
+    }
 
     // Check for non-negative integer in argv[1]:
     check_for_negative_int(argv[1]);
@@ -24,13 +29,15 @@ int main(int argc, string argv[])
     // Convert argv[1] from a `string` to an `int`
     int key = atoi(argv[1]);
 
-    // Prompting user for input:
+    // Prompting user for plaintext:
     string plaintext = get_string("plaintext: ");
+
+    // Rotate the character by key:
+    string ciphertext = rotate_text(plaintext, key);
 
     // Output:
     // "ciphertext: "
-
-    // After outputting ciphertext, you should print a newline. Your program should then exit by returning 0 from main.
+    return 0;
 }
 
 // FUNCTIONS:
@@ -61,7 +68,7 @@ int check_arguments(int argc)
 }
 
 // Check if argv[1] is a digit:
-int isDigit(string number)
+bool isDigit(string number)
 {
     // If any of the characters of the command-line argument is not a decimal digit, your program
     // should print the message Usage: ./caesar key and return from main a value of 1.
@@ -71,10 +78,10 @@ int isDigit(string number)
         if (isdigit(number[i]) == false)
         {
             printf("Usage: ./caesar key\n");
-            return 1;
+            return false;
         }
     }
-    return 0;
+    return true;
 }
 
 // Check for non-negative integer in argv[1]:
@@ -90,4 +97,38 @@ int check_for_negative_int(string number)
     {
         return 0;
     }
+}
+
+// Rotate the character by key:
+string rotate_text(string plaintext, int key)
+{
+    // For each character in the plaintext:
+    for (int i = 0; i < strlen(plaintext); i++)
+    {
+        // Rotate the character if it's a letter
+        if (isalpha(plaintext[i]))
+        {
+            if (isupper(plaintext[i]))
+            {
+                plaintext[i] = plaintext[i] + key;
+                // 65 - 90 A-Z
+                if (plaintext[i] > 90)
+                {
+                    plaintext[i] = (((plaintext[i] + key) % 26) + 65);
+                }
+            }
+            // printf("i = %i\n", i);
+            // printf("plaintext int: %i\n", plaintext[i]);
+            // plaintext[i] = plaintext[i] + key;
+            // printf("plaintext int: %i\n", plaintext[i]);
+        }
+        else
+        {
+            plaintext[i] = plaintext[i];
+        }
+    }
+    // After outputting ciphertext, you should print a newline. Your program should then exit by returning 0
+    // from main.
+    printf("ciphertext: %s\n", plaintext);
+    return 0;
 }
