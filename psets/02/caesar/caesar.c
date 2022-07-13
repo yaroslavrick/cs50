@@ -6,8 +6,8 @@
 
 // Functions:
 bool check_arguments(int argc);
-bool isDigit(string number);
 bool isNegative_int(string number);
+bool isDigit(string number);
 string rotate_text(string plaintext, int key);
 
 int main(int argc, string argv[])
@@ -19,16 +19,16 @@ int main(int argc, string argv[])
         return 1;
     }
 
+    // Check for non-negative integer in argv[1]:
+    if (isNegative_int(argv[1]) == true)
+    {
+        return 1;
+    }
+
     // Check if argv[1] is a digit:
     if (isDigit(argv[1]) == false)
     {
         printf("%s include non-digit value!\n", argv[1]);
-        return 1;
-    }
-
-    // Check for non-negative integer in argv[1]:
-    if (isNegative_int(argv[1]))
-    {
         return 1;
     }
 
@@ -97,11 +97,11 @@ bool isNegative_int(string number)
     if (number[0] == '-')
     {
         printf("Negative digit!\n");
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 
