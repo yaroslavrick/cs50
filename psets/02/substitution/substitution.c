@@ -226,7 +226,6 @@ string encipher(string plaintext, string key)
             }
         }
     }
-    // plaintext;
     printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
